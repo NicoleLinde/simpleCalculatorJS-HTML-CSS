@@ -7,7 +7,60 @@ html {
 body {
   padding: 0;
   margin: 0;
+  background-color: #45526C;
 }
 .wrapper {
     width: 400px;
+    background: rgb(56,50,62);
+    background: linear-gradient(0deg, rgba(56,50,62,1) 0%, rgba(12,13,97,1) 100%);
+    color: #E7E0C9;
+}
+
+.screen {
+    text-align: right;
+font-family: 'Courier New', Courier, monospace;
+font-size:4rem;
+padding: 1.3rem 1rem;
+}
+
+.calc-button-row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-bottom: 0.5%;
+}
+
+.calc-button {
+    background-color: #E7E0C9;
+    color: #11324D;
+    border: none;
+    font-size:4rem;
+    height: 6rem;
+    flex-basis: 24.5%;
+}
+
+.calc-button:hover {
+    background-color: #C1CFC0;
+}
+
+.calc-button:active {
+    background-color: #6B7AA1;
+}
+
+.double {
+    flex-basis: 49.7%;
+}
+
+.triple {
+    flex-basis: 74.8%;
+}
+
+.calc-button:last-child {
+    background-color: #11324D;
+    color: #E7E0C9;
+}
+
+.calc-button:last-child:hover {
+    background-color: #C1CFC0;
+    color: #11324D;
 }
