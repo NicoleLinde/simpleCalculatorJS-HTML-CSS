@@ -11,9 +11,79 @@ function buttonClick(value) {
     else {
         handleNumber(value);
     }
+    screen.innerText = buffer;
 }
 
 function handleSymbol(symbol) {
+    console.log('handleSymbol', symbol)
+    switch (symbol) {
+        case 'C':
+            buffer = '0';
+            runningTotal = 0;
+            break;
+        case '=':
+            handleEquals()
+            break;
+        case '←':
+            if (buffer.length === 1) {
+                buffer = '0';
+            } else {
+                buffer = buffer.substring(0, buffer.length - 1);
+            }
+            break;
+        case '+':
+        case '-':
+        case '×':
+        case '÷':
+            handleMath(symbol);
+            break;
+    }
+
+}
+
+function handleEquals(previousOperator) {
+    if (previousOperator === null) {
+        return;
+    } else {
+        flushOperation(parseInt(buffer));
+        previousOperator = null;
+        buffer = runningTotal;
+        runningTotal = 0;
+    }
+}
+
+function handleMath(symbol) {
+    if (buffer === '0') {
+        return;
+    }
+    const intBuffer = parseInt(buffer);
+    if (runningTotal === 0) {
+        runningTotal = intBuffer;
+    }
+    else {
+        flushOperation(intBuffer);
+    }
+
+    previousOperator = symbol;
+
+    buffer = '0';
+}
+
+function flushOperation(intBuffer) {
+    if (previousOperator === '+') {
+        runningTotal += intBuffer;
+    }
+    else if (previousOperator === '-') {
+        runningTotal -= intBuffer;
+    }
+    else if (previousOperator === '×') {
+        runningTotal *= intBuffer;
+    }
+    else {
+        runningTotal /= intBuffer;
+    }
+
+    console.log(runningTotal, 'RT')
 
 }
 
@@ -23,7 +93,7 @@ function handleNumber(numberString) {
     } else {
         buffer += numberString;
     }
-    screen.innerText = buffer;
+
 }
 
 function init() { }
